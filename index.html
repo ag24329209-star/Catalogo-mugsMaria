@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MaríaAsuncionDetallitosConAmor - Catálogo</title>
-    <meta name="description" content="Catálogo oficial de MaríaAsuncionDetallitosConAmor. Mugs únicos hechos con amor. Envíos gratis a toda Colombia.">
+    <meta name="description" content="Catálogo oficial de MaríaAsuncionDetallitosConAmor. Mugs únicos hechos with amor. Envíos a toda Colombia.">
     <meta name="keywords" content="mugs, personalizados, Colombia, cerámica, regalos, detallitos con amor">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -271,6 +271,13 @@
             box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
         }
         
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            filter: invert(1);
+        }
+        
         .shipping-banner {
             background: var(--secondary-gradient);
             color: white;
@@ -311,6 +318,90 @@
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
             position: relative;
             z-index: 1;
+        }
+        
+        /* Newsletter Section */
+        .newsletter-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-light);
+            border: 2px solid var(--glass-border);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--primary-gradient);
+            border-radius: 25px;
+            z-index: -1;
+            animation: border-glow 3s ease infinite;
+        }
+        
+        @keyframes border-glow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+        
+        .newsletter-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px 20px;
+            border: 2px solid var(--glass-border);
+            border-radius: 50px;
+            background: white;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            outline: none;
+        }
+        
+        .newsletter-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .newsletter-btn {
+            background: var(--secondary-gradient);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: var(--transition-smooth);
+            white-space: nowrap;
+        }
+        
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(240, 147, 251, 0.4);
         }
         
         /* Search Bar */
@@ -590,22 +681,24 @@
         .product-actions {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
         }
         
         .contact-btn {
             background: var(--primary-gradient);
             color: white;
             border: none;
-            padding: 18px 25px;
+            padding: 15px 20px;
             border-radius: 50px;
             cursor: pointer;
             font-weight: 700;
             flex: 1;
+            min-width: 200px;
             transition: var(--transition-smooth);
             text-decoration: none;
             display: inline-block;
             text-align: center;
-            font-size: 1rem;
+            font-size: 0.95rem;
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
             position: relative;
             overflow: hidden;
@@ -632,21 +725,27 @@
             background: linear-gradient(135deg, #5a67d8, #6b46c1);
         }
         
-        .wishlist-btn {
+        .secondary-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .wishlist-btn, .share-btn {
             background: white;
             color: #667eea;
             border: 2px solid #667eea;
             border-radius: 50px;
-            padding: 18px;
+            padding: 15px;
             cursor: pointer;
             transition: var(--transition-smooth);
             display: flex;
             align-items: center;
             justify-content: center;
-            min-width: 60px;
+            min-width: 50px;
+            font-size: 1.2rem;
         }
         
-        .wishlist-btn:hover {
+        .wishlist-btn:hover, .share-btn:hover {
             background: #667eea;
             color: white;
             transform: scale(1.1);
@@ -656,6 +755,31 @@
             background: #ef4444;
             border-color: #ef4444;
             color: white;
+        }
+        
+        .share-btn:hover {
+            background: var(--success-color);
+            border-color: var(--success-color);
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-medium);
+            z-index: 1000;
+            font-weight: 600;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
         }
         
         /* Empty State */
@@ -798,6 +922,17 @@
                 justify-content: center;
             }
             
+            .newsletter-form {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .newsletter-input {
+                min-width: auto;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            
             .category-tabs {
                 width: auto;
                 padding: 8px;
@@ -821,6 +956,16 @@
             
             .product-actions {
                 flex-direction: column;
+                gap: 15px;
+            }
+            
+            .secondary-actions {
+                justify-content: center;
+            }
+            
+            .contact-btn {
+                min-width: auto;
+                width: 100%;
             }
             
             .scroll-to-top {
@@ -840,6 +985,10 @@
                 grid-template-columns: 1fr;
                 gap: 20px;
             }
+            
+            .newsletter-section {
+                padding: 25px 20px;
+            }
         }
         
         /* Print Styles */
@@ -851,7 +1000,9 @@
             .loading-screen,
             .scroll-to-top,
             .contact-btn,
-            .wishlist-btn {
+            .wishlist-btn,
+            .share-btn,
+            .newsletter-section {
                 display: none !important;
             }
             
@@ -909,18 +1060,32 @@
             <div class="subtitle">Mugs únicos hechos con amor para momentos especiales</div>
             <div class="contact-info">
                 <a href="https://www.tiktok.com/@mariaasunciondetallitosconamor" target="_blank" class="contact-item">
-                    <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/9.0.0/tiktok.svg" alt="TikTok" style="width: 24px; height: 24px; margin-right: 10px; filter: invert(1);">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                    </svg>
                     TikTok: @MaríaAsuncionDetallitosConAmor
                 </a>
                 <a href="https://wa.me/573178344002" target="_blank" class="contact-item">
-                    <img src="https://cdnjs.cloudflare.com/ajax/libs/simple-icons/9.0.0/whatsapp.svg" alt="WhatsApp" style="width: 24px; height: 24px; margin-right: 10px; filter: invert(1);">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488z"/>
+                    </svg>
                     WhatsApp: 317-834-4002
                 </a>
             </div>
         </header>
 
         <div class="shipping-banner">
-            <div class="shipping-text">🚚 ¡ENVÍOS GRATIS A TODO COLOMBIA! 🇨🇴 ✨</div>
+            <div class="shipping-text">🚚 ¡ENVÍOS A TODA COLOMBIA! 🇨🇴 ✨</div>
+        </div>
+
+        <!-- Newsletter Section -->
+        <div class="newsletter-section fade-in">
+            <div class="newsletter-title">📬 Suscríbete a nuestras ofertas especiales</div>
+            <p style="color: var(--text-secondary); margin-bottom: 25px;">Recibe descuentos exclusivos y novedades de nuestros mugs directamente en tu email</p>
+            <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+                <input type="email" class="newsletter-input" placeholder="Tu email aquí..." required id="newsletterEmail">
+                <button type="submit" class="newsletter-btn">✨ Suscribirse</button>
+            </form>
         </div>
 
         <!-- Search Bar -->
@@ -943,7 +1108,7 @@
             </div>
             <div class="stat-card">
                 <div class="stat-number">🇨🇴</div>
-                <div class="stat-label">Envío Gratis</div>
+                <div class="stat-label">Envío Nacional</div>
             </div>
             <div class="stat-card">
                 <div class="stat-number">⭐⭐⭐⭐⭐</div>
@@ -952,9 +1117,9 @@
         </div>
 
         <div class="category-tabs">
-            <button class="tab active" onclick="showCategory('todos')">✨ Todos los Mugs</button>
-            <button class="tab" onclick="showCategory('personajes')">🎭 Personajes</button>
-            <button class="tab" onclick="showCategory('parejas')">💑 Parejas</button>
+            <button class="tab active" onclick="showCategory('todos', this)">✨ Todos los Mugs</button>
+            <button class="tab" onclick="showCategory('personajes', this)">🎭 Personajes</button>
+            <button class="tab" onclick="showCategory('parejas', this)">💑 Parejas</button>
         </div>
 
         <div class="products-grid" id="products-container">
@@ -971,13 +1136,13 @@
                     <h4>📞 Contacto</h4>
                     <p>WhatsApp: 317-834-4002</p>
                     <p>TikTok: @MaríaAsuncionDetallitosConAmor</p>
-                    <p>Horario: Lun-Sáb 9AM-7PM</p>
+                    <p>Horario: Todos los días 8AM-8PM</p>
                 </div>
                 <div class="footer-section">
                     <h4>🚚 Envíos</h4>
-                    <p>Envíos gratis a toda Colombia</p>
-                    <p>Entrega 3-5 días hábiles</p>
-                    <p>Embalaje seguro garantizado</p>
+                    <p>Envíos a toda Colombia</p>
+                    <p>Entrega 1-5 días hábiles*</p>
+                    <p>*Tiempo varía según ubicación</p>
                 </div>
                 <div class="footer-section">
                     <h4>💎 Calidad</h4>
@@ -986,15 +1151,15 @@
                     <p>Garantía de satisfacción</p>
                 </div>
                 <div class="footer-section">
-                    <h4>🤝 Nosotros</h4>
-                    <p>Empresa familiar colombiana</p>
-                    <p>Más de 5 años de experiencia</p>
-                    <p>Hechos con amor y dedicación</p>
+                    <h4>🏠 Nosotros</h4>
+                    <p>Emprendimiento familiar</p>
+                    <p>Ubicados en Facatativá, Cundinamarca</p>
+                    <p>A una hora de Bogotá</p>
                 </div>
             </div>
             <div class="footer-divider"></div>
             <div class="footer-bottom">
-                <p>© 2025 MaríaAsuncionDetallitosConAmor. Todos los derechos reservados. Hecho con ❤️ en Colombia.</p>
+                <p>© 2025 MaríaAsuncionDetallitosConAmor. Todos los derechos reservados. Emprendimiento familiar hecho con ❤️ desde Facatativá, Cundinamarca.</p>
             </div>
         </footer>
     </div>
@@ -1003,16 +1168,71 @@
         // Base de datos de productos mejorada
         let products = [];
         let originalProducts = [];
-        let wishlist = JSON.parse(localStorage.getItem('wishlist') || '[]');
+        let wishlist = [];
+        let currentCategory = 'todos';
+
+        // Función para validar email
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Función para manejar suscripción al newsletter
+        function handleNewsletterSubmit(event) {
+            event.preventDefault();
+            const email = document.getElementById('newsletterEmail').value;
+            
+            if (!isValidEmail(email)) {
+                showNotification('❌ Por favor ingresa un email válido');
+                return;
+            }
+            
+            // Simulación de suscripción (aquí conectarías con tu backend)
+            showNotification('✅ ¡Suscripción exitosa! Pronto recibirás nuestras ofertas');
+            document.getElementById('newsletterEmail').value = '';
+        }
+
+        // Sistema de compartir mejorado
+        async function shareProduct(productName, productPrice) {
+            const productUrl = `${window.location.origin}${window.location.pathname}?product=${encodeURIComponent(productName)}`;
+            const shareData = {
+                title: `${productName} - MaríaAsuncionDetallitosConAmor`,
+                text: `Mira este hermoso mug: ${productName} por solo ${productPrice.toLocaleString()}`,
+                url: productUrl
+            };
+
+            try {
+                if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                    await navigator.share(shareData);
+                    showNotification('📤 ¡Producto compartido exitosamente!');
+                } else {
+                    // Fallback: copiar al portapapeles
+                    await navigator.clipboard.writeText(`${shareData.text} - ${productUrl}`);
+                    showNotification('📋 Enlace copiado al portapapeles');
+                }
+            } catch (error) {
+                // Fallback adicional
+                const textToCopy = `${shareData.text} - ${productUrl}`;
+                const textarea = document.createElement('textarea');
+                textarea.value = textToCopy;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                showNotification('📋 Enlace copiado al portapapeles');
+            }
+        }
 
         // Función de búsqueda mejorada
         function searchProducts(query) {
             if (!query.trim()) {
-                return originalProducts;
+                return currentCategory === 'todos' ? originalProducts : originalProducts.filter(p => p.category === currentCategory);
             }
             
             const searchTerm = query.toLowerCase().trim();
-            return originalProducts.filter(product => 
+            let baseProducts = currentCategory === 'todos' ? originalProducts : originalProducts.filter(p => p.category === currentCategory);
+            
+            return baseProducts.filter(product => 
                 product.name.toLowerCase().includes(searchTerm) ||
                 product.description.toLowerCase().includes(searchTerm) ||
                 product.category.toLowerCase().includes(searchTerm)
@@ -1030,13 +1250,16 @@
         });
 
         // Función para mostrar categoría mejorada
-        function showCategory(category) {
+        function showCategory(category, tabElement) {
             // Actualizar tabs activos
             document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-            event.target.classList.add('active');
+            tabElement.classList.add('active');
             
             // Limpiar búsqueda
             document.getElementById('searchInput').value = '';
+            
+            // Actualizar categoría actual
+            currentCategory = category;
             
             // Filtrar productos
             let filteredProducts = category === 'todos' ? originalProducts : originalProducts.filter(p => p.category === category);
@@ -1046,7 +1269,7 @@
             document.getElementById('totalProducts').textContent = filteredProducts.length + '+';
         }
 
-        // Función para alternar wishlist
+        // Función para alternar wishlist (usando sessionStorage en lugar de localStorage)
         function toggleWishlist(productName, button) {
             if (wishlist.includes(productName)) {
                 wishlist = wishlist.filter(item => item !== productName);
@@ -1058,7 +1281,12 @@
                 button.innerHTML = '❤️';
             }
             
-            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+            // Almacenar en memoria durante la sesión
+            try {
+                sessionStorage.setItem('wishlist', JSON.stringify(wishlist));
+            } catch(e) {
+                // Si sessionStorage falla, solo usar la variable en memoria
+            }
             
             // Mostrar notificación
             showNotification(
@@ -1068,30 +1296,30 @@
             );
         }
 
-        // Función para mostrar notificaciones
+        // Función para mostrar notificaciones mejorada
         function showNotification(message) {
+            // Remover notificación existente si la hay
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+
             const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: var(--primary-gradient);
-                color: white;
-                padding: 15px 25px;
-                border-radius: 10px;
-                box-shadow: var(--shadow-medium);
-                z-index: 1000;
-                font-weight: 600;
-                transform: translateX(100%);
-                transition: transform 0.3s ease;
-            `;
+            notification.className = 'notification';
             notification.textContent = message;
             document.body.appendChild(notification);
             
-            setTimeout(() => notification.style.transform = 'translateX(0)', 100);
+            // Mostrar notificación
+            setTimeout(() => notification.classList.add('show'), 100);
+            
+            // Ocultar después de 3 segundos
             setTimeout(() => {
-                notification.style.transform = 'translateX(100%)';
-                setTimeout(() => document.body.removeChild(notification), 300);
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
+                    }
+                }, 300);
             }, 3000);
         }
 
@@ -1129,11 +1357,18 @@
                                    class="contact-btn" target="_blank">
                                     💬 Consultar por WhatsApp
                                 </a>
-                                <button class="wishlist-btn ${isInWishlist ? 'active' : ''}" 
-                                        onclick="toggleWishlist('${product.name}', this)"
-                                        aria-label="Agregar a favoritos">
-                                    ${isInWishlist ? '❤️' : '🤍'}
-                                </button>
+                                <div class="secondary-actions">
+                                    <button class="wishlist-btn ${isInWishlist ? 'active' : ''}" 
+                                            onclick="toggleWishlist('${product.name}', this)"
+                                            aria-label="Agregar a favoritos">
+                                        ${isInWishlist ? '❤️' : '🤍'}
+                                    </button>
+                                    <button class="share-btn" 
+                                            onclick="shareProduct('${product.name}', ${product.price})"
+                                            aria-label="Compartir producto">
+                                        📤
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -1147,9 +1382,6 @@
             if (!product) return;
             
             showNotification(`👀 Viendo detalles de: ${product.name}`);
-            
-            // Aquí podrías agregar un modal con más detalles
-            // Por ahora, solo mostramos la notificación
         }
 
         // Función para agregar producto mejorada
@@ -1187,6 +1419,17 @@
 
         // Función de inicialización mejorada
         function initializePage() {
+            // Cargar wishlist desde sessionStorage si está disponible
+            try {
+                const savedWishlist = sessionStorage.getItem('wishlist');
+                if (savedWishlist) {
+                    wishlist = JSON.parse(savedWishlist);
+                }
+            } catch(e) {
+                // Si hay error, usar array vacío
+                wishlist = [];
+            }
+
             // Ocultar loading screen
             setTimeout(() => {
                 document.getElementById('loadingScreen').classList.add('hidden');
@@ -1246,19 +1489,45 @@
             }, 100);
         }
 
-        // Inicializar cuando el DOM esté listo
-        document.addEventListener('DOMContentLoaded', initializePage);
-
-        // Service Worker para PWA (opcional)
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', function() {
-                navigator.serviceWorker.register('/sw.js').then(function(registration) {
-                    console.log('SW registered: ', registration);
-                }).catch(function(registrationError) {
-                    console.log('SW registration failed: ', registrationError);
-                });
-            });
+        // Detectar parámetros de URL para productos específicos
+        function checkUrlParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productName = urlParams.get('product');
+            if (productName) {
+                const product = originalProducts.find(p => p.name === decodeURIComponent(productName));
+                if (product) {
+                    showNotification(`🎯 Mostrando: ${product.name}`);
+                }
+            }
         }
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            initializePage();
+            checkUrlParams();
+        });
+
+        // Event listeners adicionales
+        window.addEventListener('beforeunload', () => {
+            // Guardar estado antes de cerrar
+            try {
+                sessionStorage.setItem('wishlist', JSON.stringify(wishlist));
+            } catch(e) {
+                // Ignorar errores de storage
+            }
+        });
+
+        // Mejorar accesibilidad con navegación por teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                // Limpiar búsqueda con Escape
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput.value) {
+                    searchInput.value = '';
+                    searchProducts('');
+                }
+            }
+        });
     </script>
 </body>
 </html>
