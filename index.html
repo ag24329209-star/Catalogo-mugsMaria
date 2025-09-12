@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Mugs | Detallitos con Amor</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background: #fafafa;
+      color: #333;
+    }
+    header {
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      color: #fff;
+      padding: 25px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    header h1 {
+      margin: 0;
+      font-size: 32px;
+      font-weight: bold;
+    }
+    header p {
+      margin: 5px 0 0;
+      font-size: 16px;
+    }
+    .tabs {
+      display: flex;
+      justify-content: center;
+      background: #fff;
+      padding: 12px;
+      border-bottom: 2px solid #eee;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    .tab {
+      padding: 10px 18px;
+      cursor: pointer;
+      border-radius: 20px;
+      margin: 0 6px;
+      transition: all 0.3s;
+      font-weight: 500;
+    }
+    .tab.active {
+      background: #ff7eb3;
+      color: #fff;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    #products-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 22px;
+      padding: 25px;
+    }
+    .product-card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s;
+    }
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+    .product-image img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+    .product-info {
+      margin-top: 12px;
+    }
+    .product-name {
+      font-weight: bold;
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+    .product-description {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 8px;
+    }
+    .product-price {
+      font-size: 18px;
+      font-weight: bold;
+      color: #28a745;
+      margin-bottom: 12px;
+    }
+    .contact-btn {
+      display: block;
+      background: #25d366;
+      color: #fff;
+      padding: 10px;
+      text-align: center;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
+    }
+    .contact-btn:hover {
+      background: #1da851;
+    }
+    .secondary-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 8px;
+    }
+    .wishlist-btn, .share-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+    .wishlist-btn.active {
+      color: red;
+    }
+    .empty-state {
+      text-align: center;
+      grid-column: 1 / -1;
+      padding: 60px;
+      font-size: 18px;
+    }
+    #scrollToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: none;
+      background: #ff7eb3;
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      padding: 14px;
+      cursor: pointer;
+      font-size: 20px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    }
+    #scrollToTop.visible {
+      display: block;
+    }
+    #loadingScreen {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    footer {
+      background: #222;
+      color: #ddd;
+      text-align: center;
+      padding: 20px;
+      margin-top: 30px;
+    }
+    footer p {
+      margin: 6px 0;
+      font-size: 14px;
+    }
+    footer a {
+      color: #ff7eb3;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div id="loadingScreen">⏳ Cargando catálogo...</div>
+
+  <header>
+    <h1>Detallitos con Amor 💖</h1>
+    <p>Mugs de alta calidad ✨ · Negocio familiar desde Facatativá, Cundinamarca</p>
+    <p>Pedidos a toda Colombia 🇨🇴 (1 a 5 días hábiles según ubicación)</p>
+  </header>
+
+  <div class="tabs">
+    <div class="tab active" onclick="showCategory('todos', this)">Todos</div>
+    <div class="tab" onclick="showCategory('personajes', this)">Personajes</div>
+    <div class="tab" onclick="showCategory('parejas', this)">Parejas</div>
+  </div>
+
+  <div id="products-container"></div>
+
+  <button id="scrollToTop" onclick="scrollToTop()">⬆️</button>
+
+  <footer>
+    <p>📞 WhatsApp: <a href="https://wa.me/573178344002" target="_blank">3178344002</a></p>
+    <p>🎵 TikTok: <a href="https://www.tiktok.com/@maria_asuncion03" target="_blank">@MaríaAsuncionDetallitosConAmor</a></p>
+    <p>✨ Hecho con amor para todos los rincones de Colombia 🇨🇴</p>
+  </footer>
+
+  <script>
+    let products = [];
+    let originalProducts = [];
+    let wishlist = [];
+    let currentCategory = 'todos';
+
+    function toggleWishlist(productName, button) {
+      if (wishlist.includes(productName)) {
+        wishlist = wishlist.filter(item => item !== productName);
+        button.classList.remove('active');
+        button.innerHTML = '🤍';
+      } else {
+        wishlist.push(productName);
+        button.classList.add('active');
+        button.innerHTML = '❤️';
+      }
+      try { sessionStorage.setItem('wishlist', JSON.stringify(wishlist)); } catch(e) {}
+    }
+
+    async function shareProduct(name, price) {
+      const url = `${window.location.origin}${window.location.pathname}?product=${encodeURIComponent(name)}`;
+      const text = `Mira este mug: ${name} por solo $${price.toLocaleString()}`;
+      try {
+        if (navigator.share) {
+          await navigator.share({ title: name, text, url });
+        } else {
+          await navigator.clipboard.writeText(`${text} - ${url}`);
+          alert("📋 Enlace copiado al portapapeles");
+        }
+      } catch(e) { alert("❌ Error al compartir"); }
+    }
+
+    function displayProducts(productsToShow) {
+      const container = document.getElementById("products-container");
+      if (productsToShow.length === 0) {
+        container.innerHTML = `
+          <div class="empty-state">
+            <h3>🔍 No encontramos mugs</h3>
+            <p>Prueba con otra categoría o revisa más abajo.</p>
+          </div>`;
+        return;
+      }
+      container.innerHTML = productsToShow.map((p) => {
+        const isInWishlist = wishlist.includes(p.name);
+        return `
+          <div class="product-card">
+            <div class="product-image">
+              <img src="${p.image}" alt="${p.name}">
+            </div>
+            <div class="product-info">
+              <div class="product-name">${p.name}</div>
+              <div class="product-description">${p.description}</div>
+              <div class="product-price">$${p.price.toLocaleString()}</div>
+              <a href="https://wa.me/573178344002?text=Hola! Me interesa: ${encodeURIComponent(p.name)} - Precio: $${p.price.toLocaleString()}" 
+                 class="contact-btn" target="_blank">💬 Consultar por WhatsApp</a>
+              <div class="secondary-actions">
+                <button class="wishlist-btn ${isInWishlist ? 'active' : ''}" onclick="toggleWishlist('${p.name}', this)">
+                  ${isInWishlist ? '❤️' : '🤍'}
+                </button>
+                <button class="share-btn" onclick="shareProduct('${p.name}', ${p.price})">📤</button>
+              </div>
+            </div>
+          </div>`;
+      }).join("");
+    }
+
+    function showCategory(category, tab) {
+      document.querySelectorAll(".tab").forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+      currentCategory = category;
+      let filtered = category === "todos" ? originalProducts : originalProducts.filter(p => p.category === category);
+      displayProducts(filtered);
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    window.addEventListener("scroll", () => {
+      document.getElementById("scrollToTop").classList.toggle("visible", window.pageYOffset > 300);
+    });
+
+    function addProduct(name, description, price, category, image) {
+      const product = { name, description, price, category, image };
+      products.push(product);
+      originalProducts.push(product);
+    }
+
+    function initializePage() {
+      try {
+        const saved = sessionStorage.getItem("wishlist");
+        if (saved) wishlist = JSON.parse(saved);
+      } catch(e) { wishlist = []; }
+
+      // Aquí siguen los productos tal como ya los tienes...
+      addProduct("Harry Potter Mug", "Diseño único de Harry Potter. Cerámica premium.", 60000, "personajes", "https://imgur.com/qZy6Eo8.jpg");
+      // ... (resto de productos que ya definiste) ...
+
+      displayProducts(originalProducts);
+      setTimeout(() => document.getElementById("loadingScreen").style.display = "none", 2000);
+    }
+    document.addEventListener("DOMContentLoaded", initializePage);
+  </script>
+</body>
+</html>
