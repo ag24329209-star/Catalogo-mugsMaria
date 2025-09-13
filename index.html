@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaríaAsuncionDetallitosConAmor - Catálogo</title>
+    <meta name="description" content="Catálogo oficial de MaríaAsuncionDetallitosConAmor. Mugs únicos hechos with amor. Envíos a toda Colombia.">
+    <meta name="keywords" content="mugs, personalizados, Colombia, cerámica, regalos, detallitos con amor">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea, #764ba2);
+            --secondary-gradient: linear-gradient(135deg, #f093fb, #f5576c);
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --glass-bg: rgba(255, 255, 255, 0.95);
+            --glass-border: rgba(255, 255, 255, 0.3);
+            --text-primary: #2c3e50;
+            --text-secondary: #6c757d;
+            --shadow-light: 0 8px 25px rgba(0, 0, 0, 0.1);
+            --shadow-medium: 0 15px 35px rgba(0, 0, 0, 0.15);
+            --shadow-heavy: 0 25px 50px rgba(0, 0, 0, 0.2);
+            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #f5576c 75%, #4facfe 100%);
+            background-size: 400% 400%;
+            animation: gradientBg 15s ease infinite;
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        @keyframes gradientBg {
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 50% 100%; }
+            75% { background-position: 50% 0%; }
+        }
+        
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            border-top: 4px solid white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .loading-text {
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-align: center;
+        }
+        
+        /* Scroll to Top Button */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition-smooth);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 100;
+        }
+        
+        .scroll-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .scroll-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 50px 40px;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--glass-border);
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ff9a9e, #fecfef, #fecfef, #ff9a9e);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        
+        .heart {
+            position: absolute;
+            color: #ff6b9d;
+            font-size: 20px;
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+            user-select: none;
+        }
+        
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .heart:nth-child(2) { left: 20%; animation-delay: 1s; }
+        .heart:nth-child(3) { left: 30%; animation-delay: 2s; }
+        .heart:nth-child(4) { left: 70%; animation-delay: 1.5s; }
+        .heart:nth-child(5) { left: 80%; animation-delay: 0.5s; }
+        .heart:nth-child(6) { left: 90%; animation-delay: 2.5s; }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-20px) rotate(5deg); }
+            66% { transform: translateY(10px) rotate(-3deg); }
+        }
+        
+        .logo {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+            text-shadow: 0 4px 8px rgba(102, 126, 234, 0.2);
+        }
+        
+        .slogan {
+            font-size: clamp(1rem, 2.5vw, 1.4rem);
+            font-weight: 600;
+            background: var(--secondary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            font-style: italic;
+            text-shadow: 0 2px 4px rgba(240, 147, 251, 0.2);
+        }
+        
+        .subtitle {
+            font-size: clamp(0.9rem, 2vw, 1.2rem);
+            color: var(--text-secondary);
+            margin-bottom: 35px;
+            font-weight: 400;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+        
+        .contact-item {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .contact-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s;
+        }
+        
+        .contact-item:hover::before {
+            left: 100%;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+        }
+        
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            filter: invert(1);
+        }
+        
+        .shipping-banner {
+            background: var(--secondary-gradient);
+            color: white;
+            padding: 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(240, 147, 251, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shipping-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(255, 255, 255, 0.1) 10px,
+                rgba(255, 255, 255, 0.1) 20px
+            );
+            animation: stripe-move 20s linear infinite;
+        }
+        
+        @keyframes stripe-move {
+            0% { transform: translateX(-100px); }
+            100% { transform: translateX(100px); }
+        }
+        
+        .shipping-text {
+            font-size: clamp(1rem, 2.5vw, 1.3rem);
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Newsletter Section */
+        .newsletter-section {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-light);
+            border: 2px solid var(--glass-border);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .newsletter-section::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: var(--primary-gradient);
+            border-radius: 25px;
+            z-index: -1;
+            animation: border-glow 3s ease infinite;
+        }
+        
+        @keyframes border-glow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.8; }
+        }
+        
+        .newsletter-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px 20px;
+            border: 2px solid var(--glass-border);
+            border-radius: 50px;
+            background: white;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            outline: none;
+        }
+        
+        .newsletter-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .newsletter-btn {
+            background: var(--secondary-gradient);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: var(--transition-smooth);
+            white-space: nowrap;
+        }
+        
+        .newsletter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(240, 147, 251, 0.4);
+        }
+        
+        /* Search Bar */
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .search-bar {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .search-input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            border: 2px solid var(--glass-border);
+            border-radius: 50px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            outline: none;
+        }
+        
+        .search-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+        }
+        
+        .category-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 50px;
+            gap: 15px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 60px;
+            padding: 12px;
+            box-shadow: var(--shadow-light);
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            border: 2px solid var(--glass-border);
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            background: transparent;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition-smooth);
+            color: var(--text-secondary);
+            font-size: 1rem;
+            position: relative;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .tab::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            transition: all 0.4s;
+            z-index: -1;
+        }
+        
+        .tab.active::before {
+            left: 0;
+        }
+        
+        .tab.active {
+            color: white;
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+        }
+        
+        .tab:hover:not(.active) {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        /* Statistics Section */
+        .stats-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            border: 2px solid var(--glass-border);
+            transition: var(--transition-smooth);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+            margin-bottom: 60px;
+        }
+        
+        .product-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition-smooth);
+            border: 2px solid var(--glass-border);
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px);
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .product-card:nth-child(1) { animation-delay: 0.1s; }
+        .product-card:nth-child(2) { animation-delay: 0.2s; }
+        .product-card:nth-child(3) { animation-delay: 0.3s; }
+        .product-card:nth-child(4) { animation-delay: 0.4s; }
+        .product-card:nth-child(5) { animation-delay: 0.5s; }
+        .product-card:nth-child(6) { animation-delay: 0.6s; }
+        
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: all 0.6s;
+            z-index: 1;
+        }
+        
+        .product-card:hover::before {
+            left: 100%;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .product-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 25%, #4facfe 50%, #667eea 75%, #764ba2 100%);
+            background-size: 400% 400%;
+            animation: gradientMove 8s ease infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+        
+        @keyframes gradientMove {
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 50% 100%; }
+            75% { background-position: 50% 0%; }
+        }
+        
+        .product-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at center, transparent 30%, rgba(255, 255, 255, 0.1) 100%);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--secondary-gradient);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+        
+        .product-info {
+            padding: 30px;
+            position: relative;
+        }
+        
+        .product-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .product-description {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            font-size: 1rem;
+            line-height: 1.6;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 25px;
+            text-shadow: 0 2px 4px rgba(102, 126, 234, 0.2);
+        }
+        
+        .product-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .contact-btn {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 700;
+            flex: 1;
+            min-width: 200px;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            font-size: 0.95rem;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: all 0.6s;
+        }
+        
+        .contact-btn:hover::before {
+            left: 100%;
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(102, 126, 234, 0.5);
+            background: linear-gradient(135deg, #5a67d8, #6b46c1);
+        }
+        
+        .secondary-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .wishlist-btn, .share-btn {
+            background: white;
+            color: #667eea;
+            border: 2px solid #667eea;
+            border-radius: 50px;
+            padding: 15px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 50px;
+            font-size: 1.2rem;
+        }
+        
+        .wishlist-btn:hover, .share-btn:hover {
+            background: #667eea;
+            color: white;
+            transform: scale(1.1);
+        }
+        
+        .wishlist-btn.active {
+            background: #ef4444;
+            border-color: #ef4444;
+            color: white;
+        }
+        
+        .share-btn:hover {
+            background: var(--success-color);
+            border-color: var(--success-color);
+        }
+        
+        /* Notification */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary-gradient);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-medium);
+            z-index: 1000;
+            font-weight: 600;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 80px 40px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            box-shadow: var(--shadow-light);
+            border: 2px solid var(--glass-border);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .empty-state::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-conic-gradient(
+                from 0deg at 50% 50%,
+                transparent 0deg,
+                rgba(102, 126, 234, 0.05) 30deg,
+                transparent 60deg
+            );
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .empty-state h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--text-primary);
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .empty-state p {
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            border-radius: 25px;
+            padding: 40px;
+            margin-top: 60px;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            border: 2px solid var(--glass-border);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h4 {
+            color: var(--text-primary);
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .footer-section p, .footer-section a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            line-height: 1.8;
+            transition: var(--transition-smooth);
+        }
+        
+        .footer-section a:hover {
+            color: #667eea;
+        }
+        
+        .footer-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--glass-border), transparent);
+            margin: 30px 0;
+        }
+        
+        .footer-bottom {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        
+        /* Animations */
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards;
+        }
+        
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            header {
+                padding: 40px 25px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .contact-item {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .newsletter-input {
+                min-width: auto;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+            
+            .category-tabs {
+                width: auto;
+                padding: 8px;
+                gap: 8px;
+            }
+            
+            .tab {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+            
+            .stats-section {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .secondary-actions {
+                justify-content: center;
+            }
+            
+            .contact-btn {
+                min-width: auto;
+                width: 100%;
+            }
+            
+            .scroll-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .newsletter-section {
+                padding: 25px 20px;
+            }
+        }
+        
+        /* Print Styles */
+        @media print {
+            body {
+                background: white !important;
+            }
+            
+            .loading-screen,
+            .scroll-to-top,
+            .contact-btn,
+            .wishlist-btn,
+            .share-btn,
+            .newsletter-section {
+                display: none !important;
+            }
+            
+            .product-card {
+                break-inside: avoid;
+                border: 1px solid #ccc !important;
+                background: white !important;
+            }
+        }
+        
+        /* High Contrast Mode */
+        @media (prefers-contrast: high) {
+            :root {
+                --glass-bg: rgba(255, 255, 255, 1);
+                --glass-border: rgba(0, 0, 0, 0.3);
+                --text-primary: #000;
+                --text-secondary: #333;
+            }
+        }
+        
+        /* Reduced Motion */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Cargando catálogo mágico...</div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop" onclick="scrollToTop()" aria-label="Volver arriba">
+        ↑
+    </button>
+
+    <div class="container">
+        <header>
+            <div class="floating-hearts">
+                <div class="heart">💖</div>
+                <div class="heart">💝</div>
+                <div class="heart">💗</div>
+                <div class="heart">💖</div>
+                <div class="heart">💝</div>
+                <div class="heart">💗</div>
+            </div>
+            <div class="logo">MaríaAsuncionDetallitosConAmor</div>
+            <div class="slogan pulse">"Cada sorbo, una sonrisa ☕💖"</div>
+            <div class="subtitle">Mugs únicos hechos con amor para momentos especiales</div>
+            <div class="contact-info">
+                <a href="https://www.tiktok.com/@mariaasunciondetallitosconamor" target="_blank" class="contact-item">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/>
+                    </svg>
+                    TikTok: @MaríaAsuncionDetallitosConAmor
+                </a>
+                <a href="https://wa.me/573178344002" target="_blank" class="contact-item">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.890-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488z"/>
+                    </svg>
+                    WhatsApp: 317-834-4002
+                </a>
+            </div>
+        </header>
+
+        <div class="shipping-banner">
+            <div class="shipping-text">🚚 ¡ENVÍOS A TODA COLOMBIA! 🇨🇴 ✨</div>
+        </div>
+
+        <!-- Newsletter Section -->
+        <div class="newsletter-section fade-in">
+            <div class="newsletter-title">📬 Suscríbete a nuestras ofertas especiales</div>
+            <p style="color: var(--text-secondary); margin-bottom: 25px;">Recibe descuentos exclusivos y novedades de nuestros mugs directamente en tu email</p>
+            <form class="newsletter-form" onsubmit="handleNewsletterSubmit(event)">
+                <input type="email" class="newsletter-input" placeholder="Tu email aquí..." required id="newsletterEmail">
+                <button type="submit" class="newsletter-btn">✨ Suscribirse</button>
+            </form>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-container">
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="Buscar mugs..." id="searchInput">
+                <span class="search-icon">🔍</span>
+            </div>
+        </div>
+
+        <!-- Statistics Section -->
+        <div class="stats-section fade-in">
+            <div class="stat-card">
+                <div class="stat-number" id="totalProducts">40+</div>
+                <div class="stat-label">Mugs Únicos</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Calidad Premium</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">🇨🇴</div>
+                <div class="stat-label">Envío Nacional</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">⭐⭐⭐⭐⭐</div>
+                <div class="stat-label">Satisfacción</div>
+            </div>
+        </div>
+
+        <div class="category-tabs">
+            <button class="tab active" onclick="showCategory('todos', this)">✨ Todos los Mugs</button>
+            <button class="tab" onclick="showCategory('personajes', this)">🎭 Personajes</button>
+            <button class="tab" onclick="showCategory('parejas', this)">💑 Parejas</button>
+        </div>
+
+        <div class="products-grid" id="products-container">
+            <div class="empty-state">
+                <h3>☕ ¡Cargando nuestros hermosos mugs!</h3>
+                <p>Estamos preparando nuestro catálogo con los mejores mugs para ti.</p>
+                <p>Síguenos en TikTok para no perderte nuestros lives de ventas.</p>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>📞 Contacto</h4>
+                    <p>WhatsApp: 317-834-4002</p>
+                    <p>TikTok: @MaríaAsuncionDetallitosConAmor</p>
+                    <p>Horario: Todos los días 8AM-8PM</p>
+                </div>
+                <div class="footer-section">
+                    <h4>🚚 Envíos</h4>
+                    <p>Envíos a toda Colombia</p>
+                    <p>Entrega 1-5 días hábiles*</p>
+                    <p>*Tiempo varía según ubicación</p>
+                </div>
+                <div class="footer-section">
+                    <h4>💎 Calidad</h4>
+                    <p>Cerámica de alta calidad</p>
+                    <p>Diseños únicos y exclusivos</p>
+                    <p>Garantía de satisfacción</p>
+                </div>
+                <div class="footer-section">
+                    <h4>🏠 Nosotros</h4>
+                    <p>Emprendimiento familiar</p>
+                    <p>Ubicados en Facatativá, Cundinamarca</p>
+                    <p>A una hora de Bogotá</p>
+                </div>
+            </div>
+            <div class="footer-divider"></div>
+            <div class="footer-bottom">
+                <p>© 2025 MaríaAsuncionDetallitosConAmor. Todos los derechos reservados. Emprendimiento familiar hecho con ❤️ desde Facatativá, Cundinamarca.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Base de datos de productos mejorada
+        let products = [];
+        let originalProducts = [];
+        let wishlist = [];
+        let currentCategory = 'todos';
+
+        // Función para validar email
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+
+        // Función para manejar suscripción al newsletter
+        function handleNewsletterSubmit(event) {
+            event.preventDefault();
+            const email = document.getElementById('newsletterEmail').value;
+            
+            if (!isValidEmail(email)) {
+                showNotification('❌ Por favor ingresa un email válido');
+                return;
+            }
+            
+            // Simulación de suscripción (aquí conectarías con tu backend)
+            showNotification('✅ ¡Suscripción exitosa! Pronto recibirás nuestras ofertas');
+            document.getElementById('newsletterEmail').value = '';
+        }
+
+        // Sistema de compartir mejorado
+        async function shareProduct(productName, productPrice) {
+            const productUrl = `${window.location.origin}${window.location.pathname}?product=${encodeURIComponent(productName)}`;
+            const shareData = {
+                title: `${productName} - MaríaAsuncionDetallitosConAmor`,
+                text: `Mira este hermoso mug: ${productName} por solo ${productPrice.toLocaleString()}`,
+                url: productUrl
+            };
+
+            try {
+                if (navigator.share && navigator.canShare && navigator.canShare(shareData)) {
+                    await navigator.share(shareData);
+                    showNotification('📤 ¡Producto compartido exitosamente!');
+                } else {
+                    // Fallback: copiar al portapapeles
+                    await navigator.clipboard.writeText(`${shareData.text} - ${productUrl}`);
+                    showNotification('📋 Enlace copiado al portapapeles');
+                }
+            } catch (error) {
+                // Fallback adicional
+                const textToCopy = `${shareData.text} - ${productUrl}`;
+                const textarea = document.createElement('textarea');
+                textarea.value = textToCopy;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                showNotification('📋 Enlace copiado al portapapeles');
+            }
+        }
+
+        // Función de búsqueda mejorada
+        function searchProducts(query) {
+            if (!query.trim()) {
+                return currentCategory === 'todos' ? originalProducts : originalProducts.filter(p => p.category === currentCategory);
+            }
+            
+            const searchTerm = query.toLowerCase().trim();
+            let baseProducts = currentCategory === 'todos' ? originalProducts : originalProducts.filter(p => p.category === currentCategory);
+            
+            return baseProducts.filter(product => 
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.description.toLowerCase().includes(searchTerm) ||
+                product.category.toLowerCase().includes(searchTerm)
+            );
+        }
+
+        // Event listener para búsqueda en tiempo real
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const query = e.target.value;
+            const filteredProducts = searchProducts(query);
+            displayProducts(filteredProducts);
+            
+            // Actualizar estadísticas
+            document.getElementById('totalProducts').textContent = filteredProducts.length + '+';
+        });
+
+        // Función para mostrar categoría mejorada
+        function showCategory(category, tabElement) {
+            // Actualizar tabs activos
+            document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
+            tabElement.classList.add('active');
+            
+            // Limpiar búsqueda
+            document.getElementById('searchInput').value = '';
+            
+            // Actualizar categoría actual
+            currentCategory = category;
+            
+            // Filtrar productos
+            let filteredProducts = category === 'todos' ? originalProducts : originalProducts.filter(p => p.category === category);
+            displayProducts(filteredProducts);
+            
+            // Actualizar estadísticas
+            document.getElementById('totalProducts').textContent = filteredProducts.length + '+';
+        }
+
+        // Función para alternar wishlist (usando sessionStorage en lugar de localStorage)
+        function toggleWishlist(productName, button) {
+            if (wishlist.includes(productName)) {
+                wishlist = wishlist.filter(item => item !== productName);
+                button.classList.remove('active');
+                button.innerHTML = '🤍';
+            } else {
+                wishlist.push(productName);
+                button.classList.add('active');
+                button.innerHTML = '❤️';
+            }
+            
+            // Almacenar en memoria durante la sesión
+            try {
+                sessionStorage.setItem('wishlist', JSON.stringify(wishlist));
+            } catch(e) {
+                // Si sessionStorage falla, solo usar la variable en memoria
+            }
+            
+            // Mostrar notificación
+            showNotification(
+                wishlist.includes(productName) ? 
+                '❤️ Agregado a favoritos!' : 
+                '🤍 Eliminado de favoritos'
+            );
+        }
+
+        // Función para mostrar notificaciones mejorada
+        function showNotification(message) {
+            // Remover notificación existente si la hay
+            const existingNotification = document.querySelector('.notification');
+            if (existingNotification) {
+                existingNotification.remove();
+            }
+
+            const notification = document.createElement('div');
+            notification.className = 'notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            // Mostrar notificación
+            setTimeout(() => notification.classList.add('show'), 100);
+            
+            // Ocultar después de 3 segundos
+            setTimeout(() => {
+                notification.classList.remove('show');
+                setTimeout(() => {
+                    if (notification.parentNode) {
+                        notification.remove();
+                    }
+                }, 300);
+            }, 3000);
+        }
+
+        // Función para mostrar productos mejorada
+        function displayProducts(productsToShow) {
+            const container = document.getElementById('products-container');
+            
+            if (productsToShow.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-state">
+                        <h3>🔍 No encontramos mugs con ese criterio</h3>
+                        <p>Intenta con otros términos de búsqueda o explora nuestras categorías.</p>
+                        <p>¡Tenemos más de 40 diseños únicos esperándote!</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            container.innerHTML = productsToShow.map((product, index) => {
+                const isInWishlist = wishlist.includes(product.name);
+                const delay = index * 0.1;
+                
+                return `
+                    <div class="product-card" style="animation-delay: ${delay}s">
+                        ${product.isNew ? '<div class="product-badge">¡NUEVO!</div>' : ''}
+                        <div class="product-image" onclick="showProductDetails('${product.name}')">
+                            ${product.emoji}
+                        </div>
+                        <div class="product-info">
+                            <div class="product-name">${product.name}</div>
+                            <div class="product-description">${product.description}</div>
+                            <div class="product-price">${product.price.toLocaleString()}</div>
+                            <div class="product-actions">
+                                <a href="https://wa.me/573178344002?text=Hola! Me interesa el producto: ${encodeURIComponent(product.name)} - Precio: ${product.price.toLocaleString()}" 
+                                   class="contact-btn" target="_blank">
+                                    💬 Consultar por WhatsApp
+                                </a>
+                                <div class="secondary-actions">
+                                    <button class="wishlist-btn ${isInWishlist ? 'active' : ''}" 
+                                            onclick="toggleWishlist('${product.name}', this)"
+                                            aria-label="Agregar a favoritos">
+                                        ${isInWishlist ? '❤️' : '🤍'}
+                                    </button>
+                                    <button class="share-btn" 
+                                            onclick="shareProduct('${product.name}', ${product.price})"
+                                            aria-label="Compartir producto">
+                                        📤
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Función para mostrar detalles del producto
+        function showProductDetails(productName) {
+            const product = originalProducts.find(p => p.name === productName);
+            if (!product) return;
+            
+            showNotification(`👀 Viendo detalles de: ${product.name}`);
+        }
+
+        // Función para agregar producto mejorada
+        function addProduct(name, description, price, category, emoji, isNew = false) {
+            const product = {
+                name,
+                description,
+                price,
+                category,
+                emoji,
+                isNew,
+                id: products.length + 1
+            };
+            products.push(product);
+            originalProducts.push(product);
+        }
+
+        // Función de scroll to top
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Event listener para mostrar/ocultar botón scroll to top
+        window.addEventListener('scroll', function() {
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('visible');
+            } else {
+                scrollToTopBtn.classList.remove('visible');
+            }
+        });
+
+        // Función de inicialización mejorada
+        function initializePage() {
+            // Cargar wishlist desde sessionStorage si está disponible
+            try {
+                const savedWishlist = sessionStorage.getItem('wishlist');
+                if (savedWishlist) {
+                    wishlist = JSON.parse(savedWishlist);
+                }
+            } catch(e) {
+                // Si hay error, usar array vacío
+                wishlist = [];
+            }
+
+            // Ocultar loading screen
+            setTimeout(() => {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 2000);
+
+            // Agregar productos con algunos marcados como nuevos
+            addProduct("Harry Potter Mug", "Elaborado en cerámica de alta calidad. Diseño único de Harry Potter con detalles increíbles. Incluye 1 mug.", 60000, "personajes", "⚡", true);
+            addProduct("Lechuza Mug", "Elaborado en cerámica de alta calidad. Diseño adorable de lechuza. Incluye 1 mug.", 45000, "personajes", "🦉");
+            addProduct("Spider-Man Mug", "Elaborado en cerámica de alta calidad. Diseño espectacular de Spider-Man. Incluye 1 mug.", 55000, "personajes", "🕷️");
+            addProduct("Venom Mug", "Elaborado en cerámica de alta calidad. Diseño impactante de Venom. Incluye 1 mug.", 36000, "personajes", "👹");
+            addProduct("Stormtrooper Mug", "Elaborado en cerámica de alta calidad. Diseño icónico de Stormtrooper de Star Wars. Incluye 1 mug.", 42000, "personajes", "🚀");
+            addProduct("One Piece Sombrero Mug", "Elaborado en cerámica de alta calidad. Diseño del icónico sombrero de paja de Luffy. Incluye 1 mug con 1 plato.", 49000, "personajes", "👒");
+            addProduct("One Piece Mug", "Elaborado en cerámica de alta calidad. Diseño de One Piece. Incluye 1 mug.", 36000, "personajes", "🏴‍☠️");
+            addProduct("One Piece Sombrero Naranja Mug", "Elaborado en cerámica de alta calidad. Diseño del sombrero naranja de One Piece. Incluye 1 mug con 1 plato.", 49000, "personajes", "🧡");
+            addProduct("One Piece Sombrero Negro Mug", "Elaborado en cerámica de alta calidad. Diseño del sombrero negro de One Piece. Incluye 1 mug con 1 plato.", 49000, "personajes", "🖤");
+            addProduct("One Piece Barril Mug", "Elaborado en cerámica de alta calidad. Diseño de barril pirata de One Piece. Incluye 1 mug.", 49000, "personajes", "🛢️");
+            addProduct("Mike Wazowski Mug", "Elaborado en cerámica de alta calidad. Diseño del adorable Mike Wazowski de Monsters Inc. Incluye 1 mug.", 32000, "personajes", "👁️");
+            addProduct("Sullivan Mug", "Elaborado en cerámica de alta calidad. Diseño del tierno Sullivan de Monsters Inc. Incluye 1 mug.", 32000, "personajes", "💙");
+            addProduct("Homero Boca Abierta Mug", "Elaborado en cerámica de alta calidad. Diseño divertido de Homero Simpson con boca abierta. Incluye 1 mug.", 30000, "personajes", "🍩");
+            addProduct("Doctor Tocino Mug", "Elaborado en cerámica de alta calidad. Diseño del divertido Doctor Tocino. Incluye 1 mug.", 32000, "personajes", "🥓", true);
+            addProduct("Stitch Tierno Mug", "Elaborado en cerámica de alta calidad. Diseño adorable de Stitch en versión tierna. Incluye 1 mug.", 36000, "personajes", "💙");
+            addProduct("Hello Kitty Parada Mug", "Elaborado en cerámica de alta calidad. Diseño encantador de Hello Kitty parada. Incluye 1 mug.", 32000, "personajes", "🎀");
+            addProduct("My Melody Mug", "Elaborado en cerámica de alta calidad. Diseño dulce de My Melody con su capucha rosada. Incluye 1 mug.", 32000, "personajes", "🐰");
+            addProduct("Kuromi Mug", "Elaborado en cerámica de alta calidad. Diseño rebelde de Kuromi con su capucha negra. Incluye 1 mug.", 32000, "personajes", "🖤");
+            addProduct("Caza Fantasmas Mug", "Elaborado en cerámica de alta calidad. Diseño icónico de los Ghostbusters. Incluye 1 mug.", 28000, "personajes", "👻");
+            addProduct("La Muerte Mug", "Elaborado en cerámica de alta calidad. Diseño impactante de La Muerte del Gato con Botas. Incluye 1 mug.", 35000, "personajes", "💀");
+            addProduct("Jason Viernes 13 Mug", "Elaborado en cerámica de alta calidad. Diseño terrorífico de Jason de Viernes 13. Incluye 1 mug.", 35000, "personajes", "🔪");
+            addProduct("Rick Sanchez Mug", "Elaborado en cerámica de alta calidad. Diseño genial de Rick Sanchez de Rick y Morty. Incluye 1 mug.", 35000, "personajes", "🧪");
+            addProduct("Balón de Fútbol Mug", "Elaborado en cerámica de alta calidad. Diseño deportivo de balón de fútbol. Incluye 1 mug.", 32000, "personajes", "⚽");
+            addProduct("Calabaza Mug", "Elaborado en cerámica de alta calidad. Diseño de calabaza de Halloween. Incluye 1 mug con su tapita.", 32000, "personajes", "🎃");
+            addProduct("Gotas Mug", "Elaborado en cerámica de alta calidad. Diseño elegante con patrón de gotas. Incluye 1 mug con su tapa.", 32000, "personajes", "💧");
+            addProduct("Tom y Jerry Casita Mug", "Elaborado en cerámica de alta calidad. Diseño adorable de casita de Tom y Jerry. Incluye 1 mug con su tapa y 1 pitillo de cristal.", 35000, "personajes", "🏠");
+            addProduct("Snoopy Silicon Mug", "Elaborado en cerámica de alta calidad. Diseño tierno de Snoopy. Incluye 1 mug con su tapa en silicón y 1 pitillo en plástico.", 36000, "personajes", "🐕");
+            addProduct("Rosquillas Mug", "Elaborado en cerámica de alta calidad. Diseño dulce con rosquillas coloridas. Incluye 1 plato.", 30000, "personajes", "🍩");
+            addProduct("Donald y Daisy Mug", "Elaborado en cerámica de alta calidad. Diseño romántico de Donald y Daisy Duck. Incluye 2 mugs.", 42000, "parejas", "💑");
+            addProduct("Stitch Pareja Mug", "Elaborado en cerámica de alta calidad. Diseño adorable de Stitch y Angel en pareja. Incluye 2 mugs.", 48000, "parejas", "💙", true);
+            addProduct("Gato Lengua Mug", "Elaborado en cerámica de alta calidad. Diseño divertido de gato sacando la lengua. Incluye 1 mug con su tapa y 1 cuchara.", 25000, "personajes", "😋");
+            addProduct("Gato Acostado Mug", "Elaborado en cerámica de alta calidad. Incluye 1 mug con su tapa y 1 cuchara.", 25000, "personajes", "😴");
+            addProduct("Sally Funko Mug", "Elaborado en cerámica de alta calidad. Diseño único de Sally de Pesadilla Antes de Navidad. Incluye 1 mug.", 39000, "personajes", "🎃");
+            addProduct("Garfield Vaso Largo Mug", "Elaborado en cerámica de alta calidad. Diseño del famoso gato naranja Garfield en formato largo. Incluye 1 mug con su tapa y 1 pitillo.", 35000, "personajes", "🐱");
+            addProduct("Tom y Jerry Tapa Espejo Mug", "Elaborado en cerámica de alta calidad. Diseño especial de Tom y Jerry con tapa espejo. Incluye 1 mug con su tapa y 1 pitillo en cristal.", 18000, "personajes", "✨");
+            addProduct("Spider-Man Cabezón Mug", "Elaborado en cerámica de alta calidad. Diseño adorable de Spider-Man en versión cabezón. Incluye 1 mug con su tapa.", 28000, "personajes", "🕸️");
+            addProduct("Mickey Cabezón Mug", "Elaborado en cerámica de alta calidad. Diseño tierno de Mickey Mouse en versión cabezón. Incluye 1 mug con su tapa.", 35000, "personajes", "🐭");
+            addProduct("Kuromi Cabezón Mug", "Elaborado en cerámica de alta calidad. Diseño adorable de Kuromi en versión cabezón. Incluye 1 mug con su tapa.", 35000, "personajes", "🖤");
+
+            // Mostrar todos los productos inicialmente
+            displayProducts(originalProducts);
+            
+            // Actualizar estadísticas
+            document.getElementById('totalProducts').textContent = originalProducts.length + '+';
+            
+            // Aplicar animación fade-in a elementos
+            setTimeout(() => {
+                document.querySelectorAll('.fade-in').forEach(el => {
+                    el.style.opacity = '1';
+                });
+            }, 100);
+        }
+
+        // Detectar parámetros de URL para productos específicos
+        function checkUrlParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productName = urlParams.get('product');
+            if (productName) {
+                const product = originalProducts.find(p => p.name === decodeURIComponent(productName));
+                if (product) {
+                    showNotification(`🎯 Mostrando: ${product.name}`);
+                }
+            }
+        }
+
+        // Inicializar cuando el DOM esté listo
+        document.addEventListener('DOMContentLoaded', () => {
+            initializePage();
+            checkUrlParams();
+        });
+
+        // Event listeners adicionales
+        window.addEventListener('beforeunload', () => {
+            // Guardar estado antes de cerrar
+            try {
+                sessionStorage.setItem('wishlist', JSON.stringify(wishlist));
+            } catch(e) {
+                // Ignorar errores de storage
+            }
+        });
+
+        // Mejorar accesibilidad con navegación por teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                // Limpiar búsqueda con Escape
+                const searchInput = document.getElementById('searchInput');
+                if (searchInput.value) {
+                    searchInput.value = '';
+                    searchProducts('');
+                }
+            }
+        });
+    </script>
+</body>
+</html>
